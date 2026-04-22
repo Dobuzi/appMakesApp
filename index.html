@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini App Playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">MINI APP PLAYGROUND</p>
+          <h1>작은 미니 앱을 바로 만들고 바로 노는 어린이 플레이그라운드</h1>
+          <p class="hero-text">
+            앱을 기획하는 대신, 미니 앱 종류와 주제와 난이도를 고르고 바로 실행합니다.
+            색깔 탭, 사운드 패드, 스티커 씬처럼 짧게 만들고 바로 놀 수 있습니다.
+          </p>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit-card orbit-card-a">tap app</div>
+          <div class="orbit-card orbit-card-b">sound pad</div>
+          <div class="orbit-card orbit-card-c">sticker scene</div>
+          <div class="orbit-card orbit-card-d">pattern maker</div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="composer" aria-labelledby="builder-title">
+          <div class="section-heading">
+            <p class="section-kicker">BUILDER</p>
+            <h2 id="builder-title">미니 앱을 조합하세요</h2>
+          </div>
+
+          <div class="control-group">
+            <p class="control-label">연령대</p>
+            <div class="chip-row" role="radiogroup" aria-label="연령대 선택">
+              <button class="option-chip is-active" type="button" data-age="preschool" aria-pressed="true">
+                유아
+              </button>
+              <button class="option-chip" type="button" data-age="early" aria-pressed="false">
+                초등 저학년
+              </button>
+              <button class="option-chip" type="button" data-age="upper" aria-pressed="false">
+                초등 고학년
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <p class="control-label">주제</p>
+            <div class="chip-row" role="radiogroup" aria-label="주제 선택">
+              <button class="topic-chip is-active" type="button" data-topic="dinosaur" aria-pressed="true">
+                공룡
+              </button>
+              <button class="topic-chip" type="button" data-topic="space" aria-pressed="false">
+                우주
+              </button>
+              <button class="topic-chip" type="button" data-topic="art" aria-pressed="false">
+                그림
+              </button>
+              <button class="topic-chip" type="button" data-topic="music" aria-pressed="false">
+                음악
+              </button>
+              <button class="topic-chip" type="button" data-topic="ocean" aria-pressed="false">
+                바다
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <p class="control-label">미니 앱 종류</p>
+            <div class="app-picker" role="radiogroup" aria-label="미니 앱 선택">
+              <button class="app-card is-active" type="button" data-app="tap" aria-pressed="true">
+                <strong>색깔 탭</strong>
+                <span>정답 타일을 빠르게 누르는 앱</span>
+              </button>
+              <button class="app-card" type="button" data-app="sound" aria-pressed="false">
+                <strong>사운드 패드</strong>
+                <span>눌러서 소리와 이모지를 만드는 앱</span>
+              </button>
+              <button class="app-card" type="button" data-app="sticker" aria-pressed="false">
+                <strong>스티커 씬</strong>
+                <span>배경 위에 오브젝트를 붙이는 앱</span>
+              </button>
+              <button class="app-card" type="button" data-app="pattern" aria-pressed="false">
+                <strong>패턴 메이커</strong>
+                <span>칸을 눌러 모양과 색을 바꾸는 만들기 앱</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="slider-label" for="difficulty-slider">
+              <span class="control-label">난이도</span>
+              <span id="difficulty-value">1</span>
+            </label>
+            <input id="difficulty-slider" type="range" min="1" max="3" value="1" />
+          </div>
+
+          <div class="prompt-actions">
+            <button id="build-button" type="button">플레이그라운드 만들기</button>
+            <p class="helper-text">
+              설정을 바꾸면 오른쪽 미리보기와 설명이 함께 바뀝니다.
+            </p>
+          </div>
+        </section>
+
+        <section class="output">
+          <div class="output-panel">
+            <p class="section-kicker">PLAYGROUND</p>
+            <div class="output-grid">
+              <article>
+                <h3>현재 미니 앱</h3>
+                <p id="app-title"></p>
+              </article>
+              <article>
+                <h3>플레이 방식</h3>
+                <p id="app-summary"></p>
+              </article>
+            </div>
+          </div>
+
+          <div class="output-panel">
+            <h3>이 앱에 들어가는 요소</h3>
+            <ul id="feature-list" class="feature-list"></ul>
+          </div>
+
+          <div class="output-panel">
+            <h3>연령대에 맞춘 설계 기준</h3>
+            <ul id="age-list" class="feature-list"></ul>
+          </div>
+
+          <div class="output-panel">
+            <h3>주제 무드 보드</h3>
+            <div id="mood-board" class="mood-board"></div>
+          </div>
+
+          <div class="output-panel">
+            <div class="preview-head">
+              <div>
+                <h3>라이브 미리보기</h3>
+                <p id="preview-title" class="preview-copy"></p>
+              </div>
+              <div class="preview-actions">
+                <button id="start-button" type="button">시작</button>
+                <button id="reset-button" type="button" class="secondary-button">초기화</button>
+              </div>
+            </div>
+            <div id="preview-stage" class="preview-stage" aria-live="polite">
+              <div class="preview-meta">
+                <p id="preview-score" class="preview-badge"></p>
+                <p id="preview-status-badge" class="preview-badge"></p>
+              </div>
+              <p id="preview-instruction" class="preview-copy"></p>
+              <div id="preview-board" class="preview-board"></div>
+              <div id="celebration-layer" class="celebration-layer" aria-hidden="true"></div>
+              <p id="preview-status" class="preview-status"></p>
+            </div>
+          </div>
+
+          <div class="output-panel">
+            <h3>부모용 요약</h3>
+            <div class="parent-gate">
+              <p id="gate-question" class="preview-copy"></p>
+              <div class="gate-actions">
+                <input
+                  id="gate-input"
+                  class="gate-input"
+                  type="text"
+                  inputmode="numeric"
+                  placeholder="정답 입력"
+                />
+                <button id="gate-button" type="button" class="secondary-button">보호자 확인</button>
+              </div>
+              <p id="gate-status" class="preview-status"></p>
+            </div>
+            <div id="parent-summary-panel" class="parent-summary" hidden>
+              <p id="parent-summary" class="preview-copy"></p>
+              <ul id="history-list" class="feature-list"></ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
