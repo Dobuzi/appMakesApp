@@ -195,7 +195,6 @@ const elements = {
   previewStatusBadge: document.getElementById("preview-status-badge"),
   previewStatus: document.getElementById("preview-status"),
   celebrationLayer: document.getElementById("celebration-layer"),
-  buildButton: document.getElementById("build-button"),
   startButton: document.getElementById("start-button"),
   resetButton: document.getElementById("reset-button"),
   difficultySlider: document.getElementById("difficulty-slider"),
@@ -308,6 +307,9 @@ function loadHistory() {
 }
 
 function saveHistory() {
+  if (!state.started && state.score === 0) {
+    return;
+  }
   const history = loadHistory();
   history.unshift({
     age: ageProfiles[state.age].label,
@@ -318,15 +320,34 @@ function saveHistory() {
   window.localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, 5)));
 }
 
-function renderParentSummary() {
+function getTargetForCurrentApp() {
   const profile = ageProfiles[state.age];
-  const targets = {
+  return {
     tap: profile.tapTarget,
     sound: profile.soundTarget,
     sticker: profile.stickerTarget,
     pattern: profile.patternTarget
-  };
-  const target = targets[state.app];
+  }[state.app];
+}
+
+function hasMeaningfulProgress() {
+  return state.score > 0 || state.started;
+}
+
+function confirmStateChange(nextAction) {
+  if (!hasMeaningfulProgress()) {
+    nextAction();
+    return;
+  }
+
+  const shouldProceed = window.confirm("지금 설정을 바꾸면 현재 놀이 진행 상태가 초기화됩니다. 계속할까요?");
+  if (shouldProceed) {
+    nextAction();
+  }
+}
+
+function renderParentSummary() {
+  const target = getTargetForCurrentApp();
   const ratio = target ? state.score / target : 0;
   elements.parentSummary.textContent =
     `${ageProfiles[state.age].label} · ${topicProfiles[state.topic].label} · ${appProfiles[state.app].label} 조합입니다. 최근 놀이 점수는 ${state.score}점이며 권장 목표는 ${target}점입니다.`;
@@ -628,8 +649,32 @@ function renderPreview() {
 
   if (!state.started) {
     hideCompletionCard();
-    elements.previewInstruction.textContent = "왼쪽에서 미니 앱을 고르고 시작을 눌러 보세요.";
+    const appLabel = appProfiles[state.app].label;
+    const mission = topicProfiles[state.topic].missions[state.app];
+    elements.previewInstruction.textContent = `${appLabel} 미리보기입니다. ${mission}`;
     elements.previewBoard.innerHTML = "";
+
+    const samples = topicProfiles[state.topic].tapEmoji.slice(0, state.app === "pattern" ? 6 : 3);
+    samples.forEach((item, index) => {
+      const sample = document.createElement("div");
+      sample.className = state.app === "pattern" ? "pattern-cell" : "preview-tile";
+      sample.textContent = item;
+      if (state.app === "pattern") {
+        sample.innerHTML = `${item}<small>sample</small>`;
+      }
+      if (state.app === "sound") {
+        sample.className = "sound-pad";
+        sample.innerHTML = `${item}<small>sample</small>`;
+      }
+      if (state.app === "sticker") {
+        sample.className = "sticker-piece";
+        sample.innerHTML = `${item}<small>sample</small>`;
+      }
+      if (state.app === "tap" && index === 0) {
+        sample.classList.add("is-target");
+      }
+      elements.previewBoard.appendChild(sample);
+    });
     return;
   }
 
@@ -669,7 +714,9 @@ function startPlayground() {
 }
 
 function resetPlayground() {
-  saveHistory();
+  if (state.score > 0) {
+    saveHistory();
+  }
   buildPlayground();
 }
 
@@ -683,36 +730,56 @@ function setSelected(buttons, activeButton, className) {
 
 elements.ageButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    state.age = button.dataset.age;
-    setSelected(elements.ageButtons, button, "is-active");
-    buildPlayground();
+    if (state.age === button.dataset.age) {
+      return;
+    }
+    confirmStateChange(() => {
+      state.age = button.dataset.age;
+      setSelected(elements.ageButtons, button, "is-active");
+      buildPlayground();
+    });
   });
 });
 
 elements.topicButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    state.topic = button.dataset.topic;
-    setSelected(elements.topicButtons, button, "is-active");
-    buildPlayground();
+    if (state.topic === button.dataset.topic) {
+      return;
+    }
+    confirmStateChange(() => {
+      state.topic = button.dataset.topic;
+      setSelected(elements.topicButtons, button, "is-active");
+      buildPlayground();
+    });
   });
 });
 
 elements.appButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    state.app = button.dataset.app;
-    setSelected(elements.appButtons, button, "is-active");
-    buildPlayground();
+    if (state.app === button.dataset.app) {
+      return;
+    }
+    confirmStateChange(() => {
+      state.app = button.dataset.app;
+      setSelected(elements.appButtons, button, "is-active");
+      buildPlayground();
+    });
   });
 });
 
-elements.difficultySlider.addEventListener("input", () => {
-  state.difficulty = Number(elements.difficultySlider.value);
-  elements.difficultyValue.textContent = String(state.difficulty);
-  updateHeader();
-  renderPreview();
+elements.difficultySlider.addEventListener("change", () => {
+  const nextDifficulty = Number(elements.difficultySlider.value);
+  if (state.difficulty === nextDifficulty) {
+    return;
+  }
+  confirmStateChange(() => {
+    state.difficulty = nextDifficulty;
+    elements.difficultyValue.textContent = String(state.difficulty);
+    buildPlayground();
+  });
+  elements.difficultySlider.value = String(state.difficulty);
 });
 
-elements.buildButton.addEventListener("click", buildPlayground);
 elements.startButton.addEventListener("click", startPlayground);
 elements.resetButton.addEventListener("click", resetPlayground);
 elements.gateButton.addEventListener("click", unlockParentSummary);
