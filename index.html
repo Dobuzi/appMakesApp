@@ -79,19 +79,19 @@
             <div class="app-picker" role="radiogroup" aria-label="미니 앱 선택">
               <button class="app-card is-active" type="button" data-app="tap" aria-pressed="true">
                 <strong>색깔 탭</strong>
-                <span>정답 타일을 빠르게 누르는 앱</span>
+                <span>숨은 목표를 찾으며 탐험을 끝내는 앱</span>
               </button>
               <button class="app-card" type="button" data-app="sound" aria-pressed="false">
                 <strong>사운드 패드</strong>
-                <span>눌러서 소리와 이모지를 만드는 앱</span>
+                <span>짧은 연주를 완성하는 소리 놀이 앱</span>
               </button>
               <button class="app-card" type="button" data-app="sticker" aria-pressed="false">
                 <strong>스티커 씬</strong>
-                <span>배경 위에 오브젝트를 붙이는 앱</span>
+                <span>장면을 꾸며 한 화면을 완성하는 앱</span>
               </button>
               <button class="app-card" type="button" data-app="pattern" aria-pressed="false">
                 <strong>패턴 메이커</strong>
-                <span>칸을 눌러 모양과 색을 바꾸는 만들기 앱</span>
+                <span>반복 무늬를 채워 작은 포스터를 만드는 앱</span>
               </button>
             </div>
           </div>
@@ -133,6 +133,11 @@
           </div>
 
           <div class="output-panel">
+            <h3>이번 놀이 목표</h3>
+            <ul id="goal-list" class="feature-list"></ul>
+          </div>
+
+          <div class="output-panel">
             <h3>연령대에 맞춘 설계 기준</h3>
             <ul id="age-list" class="feature-list"></ul>
           </div>
@@ -160,6 +165,7 @@
               </div>
               <p id="preview-instruction" class="preview-copy"></p>
               <div id="preview-board" class="preview-board"></div>
+              <div id="completion-card" class="completion-card" hidden></div>
               <div id="celebration-layer" class="celebration-layer" aria-hidden="true"></div>
               <p id="preview-status" class="preview-status"></p>
             </div>
@@ -183,6 +189,7 @@
             </div>
             <div id="parent-summary-panel" class="parent-summary" hidden>
               <p id="parent-summary" class="preview-copy"></p>
+              <p id="parent-insight" class="preview-copy"></p>
               <ul id="history-list" class="feature-list"></ul>
             </div>
           </div>

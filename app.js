@@ -8,7 +8,12 @@ const ageProfiles = {
       "한 번에 한 가지 행동만 보이게 하기",
       "큰 버튼과 큰 그림 중심 조작",
       "짧은 성공 경험을 빠르게 반복하기"
-    ]
+    ],
+    tapTarget: 3,
+    soundTarget: 4,
+    stickerTarget: 5,
+    patternTarget: 4,
+    tapTileCount: 4
   },
   early: {
     label: "초등 저학년",
@@ -16,7 +21,12 @@ const ageProfiles = {
       "규칙을 두 줄 안에서 설명하기",
       "반복할수록 조금씩 달라지는 구조",
       "점수보다 놀이 흐름을 먼저 보여주기"
-    ]
+    ],
+    tapTarget: 5,
+    soundTarget: 6,
+    stickerTarget: 7,
+    patternTarget: 6,
+    tapTileCount: 5
   },
   upper: {
     label: "초등 고학년",
@@ -24,7 +34,12 @@ const ageProfiles = {
       "직접 고르고 시도하는 선택지 주기",
       "조금 더 긴 목표와 기록 남기기",
       "만들기와 놀이를 함께 느끼게 하기"
-    ]
+    ],
+    tapTarget: 7,
+    soundTarget: 8,
+    stickerTarget: 9,
+    patternTarget: 8,
+    tapTileCount: 6
   }
 };
 
@@ -36,7 +51,13 @@ const topicProfiles = {
     tapEmoji: ["🥚", "🦕", "🦴", "🌿", "🪨", "🦖"],
     soundEmoji: ["🦕", "🦴", "🌋", "🌿"],
     stickerBg: "linear-gradient(180deg, #d5efba, #8bbf67)",
-    moods: [["탐험", "알과 화석 찾기"], ["숲", "초록빛 배경"], ["발견", "하나씩 열어보기"]]
+    moods: [["탐험", "알과 화석 찾기"], ["숲", "초록빛 배경"], ["발견", "하나씩 열어보기"]],
+    missions: {
+      tap: "숨은 공룡 알을 찾아 탐험을 끝내기",
+      sound: "공룡 퍼레이드 리듬 만들기",
+      sticker: "공룡 정원을 완성하기",
+      pattern: "공룡 발자국 포스터 채우기"
+    }
   },
   space: {
     label: "우주",
@@ -45,7 +66,13 @@ const topicProfiles = {
     tapEmoji: ["⭐", "🚀", "🪐", "☄️", "🌙", "🌍"],
     soundEmoji: ["🚀", "⭐", "🪐", "🌙"],
     stickerBg: "linear-gradient(180deg, #17213e, #3b5ea8)",
-    moods: [["별빛", "짙은 밤 배경"], ["발사", "빠른 반응 놀이"], ["행성", "큰 모양 중심"]]
+    moods: [["별빛", "짙은 밤 배경"], ["발사", "빠른 반응 놀이"], ["행성", "큰 모양 중심"]],
+    missions: {
+      tap: "반짝이는 별을 찾아 비행 시작하기",
+      sound: "우주 발사 신호 만들기",
+      sticker: "행성 장면 꾸미기",
+      pattern: "별자리 패턴 포스터 만들기"
+    }
   },
   art: {
     label: "그림",
@@ -54,7 +81,13 @@ const topicProfiles = {
     tapEmoji: ["🎨", "🖍️", "🖌️", "🌈", "⭐", "🫧"],
     soundEmoji: ["🎨", "🖍️", "🌈", "✨"],
     stickerBg: "linear-gradient(180deg, #fff1d8, #f6c46d)",
-    moods: [["색감", "따뜻한 팔레트"], ["재료", "붓과 크레용"], ["장식", "자유롭게 붙이기"]]
+    moods: [["색감", "따뜻한 팔레트"], ["재료", "붓과 크레용"], ["장식", "자유롭게 붙이기"]],
+    missions: {
+      tap: "반짝 색을 찾아 그림 시작하기",
+      sound: "색깔 리듬 보드 만들기",
+      sticker: "작은 전시장 장면 꾸미기",
+      pattern: "컬러 패턴 카드 만들기"
+    }
   },
   music: {
     label: "음악",
@@ -63,7 +96,13 @@ const topicProfiles = {
     tapEmoji: ["🎵", "🥁", "🎹", "🎶", "🎤", "🪇"],
     soundEmoji: ["🎵", "🥁", "🎹", "🎤"],
     stickerBg: "linear-gradient(180deg, #f2d7ff, #b07cff)",
-    moods: [["리듬", "두드리고 반복하기"], ["무대", "보랏빛 조명"], ["합주", "패드 조합하기"]]
+    moods: [["리듬", "두드리고 반복하기"], ["무대", "보랏빛 조명"], ["합주", "패드 조합하기"]],
+    missions: {
+      tap: "같은 박자를 찾아 무대 열기",
+      sound: "짧은 공연 한 곡 완성하기",
+      sticker: "콘서트 무대 꾸미기",
+      pattern: "리듬 패턴 보드 만들기"
+    }
   },
   ocean: {
     label: "바다",
@@ -72,7 +111,13 @@ const topicProfiles = {
     tapEmoji: ["🐠", "🐬", "🪸", "🐚", "🌊", "🫧"],
     soundEmoji: ["🐬", "🌊", "🐠", "🫧"],
     stickerBg: "linear-gradient(180deg, #b9f4f7, #41b9c7)",
-    moods: [["물결", "차분하게 흐르기"], ["탐험", "바닷속 발견"], ["거품", "동그란 반응"]]
+    moods: [["물결", "차분하게 흐르기"], ["탐험", "바닷속 발견"], ["거품", "동그란 반응"]],
+    missions: {
+      tap: "바닷속 친구를 찾아 구조하기",
+      sound: "물결 소리 합주 만들기",
+      sticker: "산호 장면 완성하기",
+      pattern: "거품 패턴 포스터 만들기"
+    }
   }
 };
 
@@ -84,7 +129,12 @@ const appProfiles = {
       "정답 타일 한 개와 헷갈리는 타일 여러 개",
       "빠르게 반응하면 점수가 올라감",
       "주제에 따라 타일 그림이 바뀜"
-    ]
+    ],
+    completion: {
+      title: "탐험 배지 획득",
+      badge: "탐험 완료",
+      description: "숨은 목표를 모두 찾아 짧은 탐험을 끝냈습니다."
+    }
   },
   sound: {
     label: "사운드 패드",
@@ -93,7 +143,12 @@ const appProfiles = {
       "패드를 누를 때마다 다른 소리 재생",
       "주제별 이모지 패드 구성",
       "짧은 반복으로 바로 즐길 수 있음"
-    ]
+    ],
+    completion: {
+      title: "리듬 배지 획득",
+      badge: "연주 완성",
+      description: "패드를 이어 눌러 짧은 공연 한 곡을 완성했습니다."
+    }
   },
   sticker: {
     label: "스티커 씬",
@@ -102,7 +157,12 @@ const appProfiles = {
       "주제 배경 위에 스티커 배치",
       "누를 때마다 다른 위치에 붙음",
       "완성 장면이 바로 눈에 보임"
-    ]
+    ],
+    completion: {
+      title: "꾸미기 배지 획득",
+      badge: "장면 완성",
+      description: "스티커를 모아 하나의 장면을 끝까지 꾸몄습니다."
+    }
   },
   pattern: {
     label: "패턴 메이커",
@@ -111,7 +171,12 @@ const appProfiles = {
       "3x3 패턴 보드 즉시 생성",
       "누를 때마다 모양과 색이 순환",
       "주제 분위기에 맞는 기호 사용"
-    ]
+    ],
+    completion: {
+      title: "패턴 배지 획득",
+      badge: "포스터 완성",
+      description: "반복 무늬를 채워 작은 패턴 포스터를 완성했습니다."
+    }
   }
 };
 
@@ -119,11 +184,13 @@ const elements = {
   appTitle: document.getElementById("app-title"),
   appSummary: document.getElementById("app-summary"),
   featureList: document.getElementById("feature-list"),
+  goalList: document.getElementById("goal-list"),
   ageList: document.getElementById("age-list"),
   moodBoard: document.getElementById("mood-board"),
   previewTitle: document.getElementById("preview-title"),
   previewInstruction: document.getElementById("preview-instruction"),
   previewBoard: document.getElementById("preview-board"),
+  completionCard: document.getElementById("completion-card"),
   previewScore: document.getElementById("preview-score"),
   previewStatusBadge: document.getElementById("preview-status-badge"),
   previewStatus: document.getElementById("preview-status"),
@@ -142,6 +209,7 @@ const elements = {
   gateStatus: document.getElementById("gate-status"),
   parentSummaryPanel: document.getElementById("parent-summary-panel"),
   parentSummary: document.getElementById("parent-summary"),
+  parentInsight: document.getElementById("parent-insight"),
   historyList: document.getElementById("history-list")
 };
 
@@ -251,8 +319,23 @@ function saveHistory() {
 }
 
 function renderParentSummary() {
+  const profile = ageProfiles[state.age];
+  const targets = {
+    tap: profile.tapTarget,
+    sound: profile.soundTarget,
+    sticker: profile.stickerTarget,
+    pattern: profile.patternTarget
+  };
+  const target = targets[state.app];
+  const ratio = target ? state.score / target : 0;
   elements.parentSummary.textContent =
-    `${ageProfiles[state.age].label} · ${topicProfiles[state.topic].label} · ${appProfiles[state.app].label} 조합입니다. 최근 놀이 점수는 ${state.score}점입니다.`;
+    `${ageProfiles[state.age].label} · ${topicProfiles[state.topic].label} · ${appProfiles[state.app].label} 조합입니다. 최근 놀이 점수는 ${state.score}점이며 권장 목표는 ${target}점입니다.`;
+  elements.parentInsight.textContent =
+    ratio >= 1
+      ? "현재 활동을 충분히 따라갔습니다. 다음에는 난이도를 올리거나 다른 미니 앱으로 넓혀도 됩니다."
+      : ratio >= 0.6
+        ? "현재 활동을 무리 없이 진행 중입니다. 같은 주제로 한 번 더 반복하면 성취감이 커질 수 있습니다."
+        : "아직 탐색 단계입니다. 난이도를 낮추거나 스티커/사운드처럼 부담이 적은 앱으로 이어가는 편이 좋습니다.";
 
   const history = loadHistory();
   elements.historyList.innerHTML = "";
@@ -266,6 +349,27 @@ function renderParentSummary() {
     li.textContent = `${index + 1}. ${entry.age} · ${entry.topic} · ${entry.app} · ${entry.score}점`;
     elements.historyList.appendChild(li);
   });
+}
+
+function showCompletionCard() {
+  const appProfile = appProfiles[state.app];
+  const topicLabel = topicProfiles[state.topic].label;
+  const ageLabel = ageProfiles[state.age].label;
+  elements.completionCard.hidden = false;
+  elements.completionCard.innerHTML = `
+    <strong>${appProfile.completion.title}</strong>
+    <span>${topicLabel} 주제에서 ${appProfile.completion.description}</span>
+    <div class="badge-row">
+      <span class="badge-pill">${appProfile.completion.badge}</span>
+      <span class="badge-pill">${ageLabel}</span>
+      <span class="badge-pill">${state.score}점 달성</span>
+    </div>
+  `;
+}
+
+function hideCompletionCard() {
+  elements.completionCard.hidden = true;
+  elements.completionCard.innerHTML = "";
 }
 
 function createParentGate() {
@@ -294,6 +398,13 @@ function unlockParentSummary() {
 function updateHeader() {
   const appProfile = appProfiles[state.app];
   const topicProfile = topicProfiles[state.topic];
+  const ageProfile = ageProfiles[state.age];
+  const targets = {
+    tap: ageProfile.tapTarget,
+    sound: ageProfile.soundTarget,
+    sticker: ageProfile.stickerTarget,
+    pattern: ageProfile.patternTarget
+  };
   document.documentElement.style.setProperty("--accent", topicProfile.color);
   document.documentElement.style.setProperty("--accent-strong", topicProfile.accentStrong);
   document.documentElement.style.setProperty("--theme-glow", `${topicProfile.color}33`);
@@ -308,6 +419,15 @@ function updateHeader() {
     `${topicProfile.label} 주제 색감과 이모지 적용`,
     `${state.difficulty}단계 기준의 반응 수 조절`
   ]);
+  renderList(elements.goalList, [
+    `${topicProfile.missions[state.app]}`,
+    `이번 세션 목표: ${targets[state.app]}점 또는 ${targets[state.app]}회 반응`,
+    state.age === "preschool"
+      ? "짧게 끝내고 바로 다시 시작할 수 있게 설계"
+      : state.age === "early"
+        ? "한 번 더 해보며 패턴을 익히는 흐름"
+        : "직접 선택하고 기록을 남기는 흐름"
+  ]);
   renderList(elements.ageList, ageProfiles[state.age].design);
   elements.moodBoard.innerHTML = "";
   topicProfile.moods.forEach(([title, detail]) => {
@@ -320,7 +440,7 @@ function updateHeader() {
 
 function getTapTiles() {
   const items = [...topicProfiles[state.topic].tapEmoji];
-  const count = 3 + state.difficulty;
+  const count = Math.min(ageProfiles[state.age].tapTileCount + state.difficulty - 1, 6);
   const tiles = items.slice(0, Math.min(count, items.length));
   if (tiles.length < 4) {
     tiles.push(...items.slice(0, 4 - tiles.length));
@@ -330,8 +450,10 @@ function getTapTiles() {
 
 function renderTapPreview() {
   const tiles = getTapTiles();
+  const targetScore = ageProfiles[state.age].tapTarget;
+  hideCompletionCard();
   state.targetIndex = Math.floor(Math.random() * tiles.length);
-  elements.previewInstruction.textContent = `${tiles[state.targetIndex]} 타일을 찾으면 점수가 올라갑니다.`;
+  elements.previewInstruction.textContent = `${topicProfiles[state.topic].missions.tap}. ${tiles[state.targetIndex]} 타일을 찾으면 점수가 올라갑니다.`;
   elements.previewBoard.innerHTML = "";
 
   tiles.forEach((item, index) => {
@@ -351,11 +473,18 @@ function renderTapPreview() {
       window.setTimeout(() => button.classList.remove("is-hit"), 220);
       if (isTarget) {
         state.score += 1;
-        elements.previewStatus.textContent = "정답입니다. 다음 타일을 찾으세요.";
+        elements.previewStatus.textContent =
+          state.score >= targetScore
+            ? "목표 달성입니다. 탐험을 완성했어요."
+            : "정답입니다. 다음 타일을 찾으세요.";
         playSuccess();
         triggerCelebration();
         elements.previewScore.textContent = `점수 ${state.score}`;
-        renderTapPreview();
+        if (state.score < targetScore) {
+          renderTapPreview();
+        } else {
+          showCompletionCard();
+        }
       } else {
         elements.previewStatus.textContent = "이번에는 다른 타일입니다.";
         playSoftError();
@@ -367,7 +496,9 @@ function renderTapPreview() {
 
 function renderSoundPreview() {
   const items = topicProfiles[state.topic].soundEmoji;
-  elements.previewInstruction.textContent = "패드를 눌러 소리와 그림을 조합해 보세요.";
+  const targetScore = ageProfiles[state.age].soundTarget;
+  hideCompletionCard();
+  elements.previewInstruction.textContent = `${topicProfiles[state.topic].missions.sound}. 패드를 눌러 소리와 그림을 조합해 보세요.`;
   elements.previewBoard.innerHTML = "";
 
   items.forEach((item, index) => {
@@ -384,13 +515,21 @@ function renderSoundPreview() {
       playPadSound(index);
       state.score += 1;
       elements.previewScore.textContent = `점수 ${state.score}`;
-      elements.previewStatus.textContent = `${item} 패드를 눌렀습니다. 계속 조합해 보세요.`;
+      elements.previewStatus.textContent =
+        state.score >= targetScore
+          ? "짧은 연주가 완성됐습니다."
+          : `${item} 패드를 눌렀습니다. 계속 조합해 보세요.`;
+      if (state.score >= targetScore) {
+        showCompletionCard();
+      }
     });
     elements.previewBoard.appendChild(button);
   });
 }
 
 function renderStickerPreview() {
+  const targetScore = ageProfiles[state.age].stickerTarget;
+  hideCompletionCard();
   const scene = document.createElement("div");
   scene.className = "sticker-canvas";
   scene.style.background = topicProfiles[state.topic].stickerBg;
@@ -399,7 +538,7 @@ function renderStickerPreview() {
   layer.className = "sticker-scene";
   scene.appendChild(layer);
 
-  elements.previewInstruction.textContent = "아래 스티커를 눌러 장면 위에 하나씩 붙여 보세요.";
+  elements.previewInstruction.textContent = `${topicProfiles[state.topic].missions.sticker}. 아래 스티커를 눌러 장면 위에 하나씩 붙여 보세요.`;
   elements.previewBoard.innerHTML = "";
   elements.previewBoard.appendChild(scene);
 
@@ -424,13 +563,21 @@ function renderStickerPreview() {
       window.setTimeout(() => button.classList.remove("is-hit"), 220);
       playSuccess();
       elements.previewScore.textContent = `점수 ${state.score}`;
-      elements.previewStatus.textContent = "스티커를 붙였습니다. 장면을 더 꾸며 보세요.";
+      elements.previewStatus.textContent =
+        state.score >= targetScore
+          ? "장면이 완성됐습니다."
+          : "스티커를 붙였습니다. 장면을 더 꾸며 보세요.";
+      if (state.score >= targetScore) {
+        showCompletionCard();
+      }
     });
     elements.previewBoard.appendChild(button);
   });
 }
 
 function renderPatternPreview() {
+  const targetScore = ageProfiles[state.age].patternTarget;
+  hideCompletionCard();
   const icons = topicProfiles[state.topic].tapEmoji.slice(0, 4);
   const palette = [
     topicProfiles[state.topic].color,
@@ -439,7 +586,7 @@ function renderPatternPreview() {
     "#ffd166"
   ];
 
-  elements.previewInstruction.textContent = "칸을 눌러 기호와 색을 바꾸며 패턴을 만들어 보세요.";
+  elements.previewInstruction.textContent = `${topicProfiles[state.topic].missions.pattern}. 칸을 눌러 기호와 색을 바꾸며 패턴을 만들어 보세요.`;
   elements.previewBoard.innerHTML = "";
 
   Array.from({ length: 9 }).forEach((_, index) => {
@@ -461,7 +608,13 @@ function renderPatternPreview() {
       state.score += 1;
       playPadSound(step);
       elements.previewScore.textContent = `점수 ${state.score}`;
-      elements.previewStatus.textContent = "패턴이 바뀌었습니다. 마음에 드는 조합을 만들어 보세요.";
+      elements.previewStatus.textContent =
+        state.score >= targetScore
+          ? "패턴 포스터가 완성됐습니다."
+          : "패턴이 바뀌었습니다. 마음에 드는 조합을 만들어 보세요.";
+      if (state.score >= targetScore) {
+        showCompletionCard();
+      }
     });
     elements.previewBoard.appendChild(cell);
   });
@@ -474,6 +627,7 @@ function renderPreview() {
     : "시작을 누르면 선택한 미니 앱이 실행됩니다.";
 
   if (!state.started) {
+    hideCompletionCard();
     elements.previewInstruction.textContent = "왼쪽에서 미니 앱을 고르고 시작을 눌러 보세요.";
     elements.previewBoard.innerHTML = "";
     return;

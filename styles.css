@@ -401,6 +401,44 @@ button:hover {
   min-height: 220px;
 }
 
+.completion-card {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(22, 18, 13, 0.08);
+}
+
+.completion-card strong,
+.completion-card span {
+  display: block;
+}
+
+.completion-card strong {
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.completion-card span {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.badge-pill {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(22, 18, 13, 0.08);
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .preview-tile,
 .sound-pad,
 .sticker-piece {
