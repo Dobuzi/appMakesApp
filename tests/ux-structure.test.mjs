@@ -6,6 +6,7 @@ const js = readFileSync(new URL("../app.js", import.meta.url), "utf8");
 const css = readFileSync(new URL("../styles.css", import.meta.url), "utf8");
 
 assert.match(html, /class="flow-steps"/, "renders the setup/play/finish flow steps");
+assert.match(html, /<h1>미니앱 놀이터<\/h1>/, "keeps the hero title concise");
 assert.match(html, /id="selection-summary"/, "renders the current selection summary");
 assert.match(html, /id="preview-phase"/, "renders a preview phase label");
 assert.match(html, /id="next-action-hint"/, "renders next-action guidance after completion");
