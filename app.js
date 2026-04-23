@@ -183,10 +183,12 @@ const appProfiles = {
 const elements = {
   appTitle: document.getElementById("app-title"),
   appSummary: document.getElementById("app-summary"),
+  selectionSummary: document.getElementById("selection-summary"),
   featureList: document.getElementById("feature-list"),
   goalList: document.getElementById("goal-list"),
   ageList: document.getElementById("age-list"),
   moodBoard: document.getElementById("mood-board"),
+  previewPhase: document.getElementById("preview-phase"),
   previewTitle: document.getElementById("preview-title"),
   previewInstruction: document.getElementById("preview-instruction"),
   previewBoard: document.getElementById("preview-board"),
@@ -194,6 +196,7 @@ const elements = {
   previewScore: document.getElementById("preview-score"),
   previewStatusBadge: document.getElementById("preview-status-badge"),
   previewStatus: document.getElementById("preview-status"),
+  nextActionHint: document.getElementById("next-action-hint"),
   celebrationLayer: document.getElementById("celebration-layer"),
   startButton: document.getElementById("start-button"),
   resetButton: document.getElementById("reset-button"),
@@ -330,6 +333,10 @@ function getTargetForCurrentApp() {
   }[state.app];
 }
 
+function getSelectionSummary() {
+  return `${ageProfiles[state.age].label} · ${topicProfiles[state.topic].label} · ${appProfiles[state.app].label} · 난이도 ${state.difficulty}`;
+}
+
 function hasMeaningfulProgress() {
   return state.score > 0 || state.started;
 }
@@ -386,6 +393,8 @@ function showCompletionCard() {
       <span class="badge-pill">${state.score}점 달성</span>
     </div>
   `;
+  elements.previewPhase.textContent = "3단계 · 완료";
+  elements.nextActionHint.textContent = "같은 설정으로 다시 놀려면 초기화 후 시작하고, 다른 조합을 보려면 왼쪽 설정을 바꾸세요.";
 }
 
 function hideCompletionCard() {
@@ -432,9 +441,11 @@ function updateHeader() {
   document.documentElement.style.setProperty("--theme-glow-soft", `${topicProfile.accentStrong}66`);
   elements.appTitle.textContent = `${ageProfiles[state.age].label}용 ${topicProfile.label} ${appProfile.label}`;
   elements.appSummary.textContent = appProfile.summary;
+  elements.selectionSummary.textContent = getSelectionSummary();
   elements.previewTitle.textContent = `${topicProfile.label} 주제로 만든 ${appProfile.label}`;
   elements.previewScore.textContent = `점수 ${state.score}`;
   elements.previewStatusBadge.textContent = `난이도 ${state.difficulty}`;
+  elements.startButton.textContent = `${appProfile.label} 시작`;
   renderList(elements.featureList, [
     ...appProfile.features,
     `${topicProfile.label} 주제 색감과 이모지 적용`,
@@ -643,6 +654,10 @@ function renderPatternPreview() {
 
 function renderPreview() {
   elements.previewBoard.style.setProperty("--topic-accent", topicProfiles[state.topic].color);
+  elements.nextActionHint.textContent = state.started
+    ? "목표 점수까지 누르면 완료 카드가 열립니다."
+    : "왼쪽 설정을 바꾸면 이 미리보기가 즉시 바뀝니다.";
+  elements.previewPhase.textContent = state.started ? "2단계 · 놀이 중" : "1단계 · 설정 확인";
   elements.previewStatus.textContent = state.started
     ? "바로 눌러서 놀 수 있습니다."
     : "시작을 누르면 선택한 미니 앱이 실행됩니다.";

@@ -22,6 +22,11 @@
             앱을 기획하는 대신, 미니 앱 종류와 주제와 난이도를 고르고 바로 실행합니다.
             색깔 탭, 사운드 패드, 스티커 씬처럼 짧게 만들고 바로 놀 수 있습니다.
           </p>
+          <ol class="flow-steps" aria-label="사용 흐름">
+            <li><span>1</span>설정 선택</li>
+            <li><span>2</span>시작</li>
+            <li><span>3</span>놀이 완료</li>
+          </ol>
         </div>
         <div class="hero-orbit" aria-hidden="true">
           <div class="orbit-card orbit-card-a">tap app</div>
@@ -114,6 +119,10 @@
         <section class="output">
           <div class="output-panel">
             <p class="section-kicker">PLAYGROUND</p>
+            <div class="selection-summary" aria-live="polite">
+              <span class="summary-label">현재 조합</span>
+              <strong id="selection-summary"></strong>
+            </div>
             <div class="output-grid">
               <article>
                 <h3>현재 미니 앱</h3>
@@ -150,6 +159,7 @@
             <div class="preview-head">
               <div>
                 <h3>라이브 미리보기</h3>
+                <p id="preview-phase" class="preview-phase"></p>
                 <p id="preview-title" class="preview-copy"></p>
               </div>
               <div class="preview-actions">
@@ -167,6 +177,7 @@
               <div id="completion-card" class="completion-card" hidden></div>
               <div id="celebration-layer" class="celebration-layer" aria-hidden="true"></div>
               <p id="preview-status" class="preview-status"></p>
+              <p id="next-action-hint" class="next-action-hint"></p>
             </div>
           </div>
 
